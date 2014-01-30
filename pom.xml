@@ -2,13 +2,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.mapdb</groupId>
+    <groupId>com.neeve</groupId>
     <artifactId>mapdb</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.6.1</version>
     <name>mapdb</name>
     <description>MapDB provides concurrent Maps, Sets and Queues backed by disk storage or off-heap memory. It is a fast, scalable and easy to use embedded Java database.</description>
     <url>http://www.mapdb.org</url>
-
+    
     <packaging>jar</packaging>
 
     <licenses>
@@ -27,9 +27,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:jankotek/MapDB.git</connection>
-        <developerConnection>scm:git:git@github.com:jankotek/MapDB.git</developerConnection>
-        <url>git@github.com:jankotek/MapDB.git</url>
+        <connection>scm:git:git@github.com:cmacnaug/MapDB.git</connection>
+        <developerConnection>scm:git:git@github.com:cmacnaug/MapDB.git</developerConnection>
+        <url>git@github.com:cmacnaug/MapDB.git</url>
     </scm>
 
     <properties>
@@ -262,5 +262,103 @@
         <artifactId>oss-parent</artifactId>
         <version>7</version>
     </parent>
+    
+    
+  <repositories>
+    <repository>
+      <id>neeve-snapshot</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/snapshots/</url>
+      <name>Neeve Snapshot Repo</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>neeve-release</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/releases/</url>
+      <name>Neeve Release Repo</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>neeve-3rdparty</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/thirdparty/</url>
+      <name>Neeve 3rd Party Repo</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+    <repository>
+      <id>neeve-central</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/groups/public/</url>
+      <name>Neeve Central</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>neeve-snapshot</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/snapshots/</url>
+      <name>Neeve Snapshot Repo</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>neeve-release</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/releases/</url>
+      <name>Neeve Release Repo</name>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>neeve-central</id>
+      <url>http://nexus.neeveresearch.com/nexus/content/groups/public/</url>
+      <name>Neeve Central</name>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <distributionManagement>
+    <repository>
+      <id>neeve-release</id>
+      <name>Internal Releases</name>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/releases//</url>
+    </repository>
+    <snapshotRepository>
+      <id>neeve-snapshot</id>
+      <name>Internal Releases</name>
+      <url>http://nexus.neeveresearch.com/nexus/content/repositories/snapshots/</url>
+      <uniqueVersion>false</uniqueVersion>
+    </snapshotRepository>
+  </distributionManagement>
 
 </project>

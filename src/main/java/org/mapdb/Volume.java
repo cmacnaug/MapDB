@@ -435,7 +435,35 @@ public abstract class Volume {
             this.file = file;
             this.mapMode = readOnly? FileChannel.MapMode.READ_ONLY: FileChannel.MapMode.READ_WRITE;
             try {
-                this.raf = new java.io.RandomAccessFile(file, readOnly?"r":"rw");
+
+                // PATCH HACK, attempt to open log file in loop to catch cases
+                // where windows is slow
+                // to unlock/delete a file:
+                RandomAccessFile openedFile = null;
+                int openAttempts = 0;
+                while (openedFile == null) {
+                    try {
+                        openedFile = new java.io.RandomAccessFile(file, readOnly ? "r" : "rw");
+                    } catch (IOException ioe) {
+                        openAttempts++;
+                        if (openAttempts == 10) {
+                            throw ioe;
+                        } else {
+                            System.err.println("Failed to open " + file + " " + (10 - openAttempts) + " remaining");
+                        }
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                            throw ioe;
+                        }
+                    }
+                }
+
+                // this.raf = new java.io.RandomAccessFile(file,
+                // readOnly?"r":"rw");
+                this.raf = openedFile;
+                // End PATCH/HACK
                 this.fileChannel = raf.getChannel();
 
                 final long fileSize = fileChannel.size();
